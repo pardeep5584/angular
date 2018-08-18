@@ -148,14 +148,14 @@ export class DataServiceService {
       "group_id" : 1,
       "title" : "rockstar",
       "image" : "assets/images/aajtak.png",
-      "admin_id" : 1,
+      "admin_id" : [2],
       "members" : [1,2,3,5]
     },
     {
       "group_id" : 2,
       "title" : "funny joks",
       "image" : "assets/images/Zee-News-Network.jpg",
-      "admin_id" : 2,
+      "admin_id" : [1,2],
       "members" : [1,2,4]
     }
   ];
@@ -287,6 +287,7 @@ export class DataServiceService {
     var chatWith;
     for( var group in this.groupData) {
       if (this.groupData[group].group_id == groupId) {
+        // console.log(this.groupData[group].admin_id);
           chatWith = {
             "group_id" : groupId,
             "name" : this.groupData[group].title,
@@ -317,6 +318,7 @@ export class DataServiceService {
   getGroupParticipantInfo( customerId, groupId) {
     var customerIdSet;
     var customerParticipantList = [];
+    var groupMemberInfo;
     for( var group in this.groupData) {
       if (this.groupData[group].group_id == groupId) {
         customerIdSet = this.groupData[group].members;
@@ -324,10 +326,28 @@ export class DataServiceService {
       }
     }
     for( var custId in customerIdSet) {
-        customerParticipantList.push(this.getChatWithCustomer(customerIdSet[custId]));
+        groupMemberInfo = {
+          "member_details" : this.getChatWithCustomer(customerIdSet[custId]),
+          "is_admin"       : this.isMemberAdmin(groupId, customerIdSet[custId])
+          }; 
+        customerParticipantList.push(groupMemberInfo);
     }
     
     return customerParticipantList;
+  }
+
+  isMemberAdmin(groupId, memberId) {
+    var adminIds;
+    for( var group in this.groupData) {
+      if (this.groupData[group].group_id == groupId) {
+        adminIds = this.groupData[group].admin_id;
+        if(adminIds.indexOf(memberId) != -1) {
+          return true;
+        }
+        break;
+      }
+    }
+    return false;
   }
 
 }

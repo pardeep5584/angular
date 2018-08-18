@@ -71,7 +71,9 @@
                         </div>
                         <div class="col-sm-4">
                             <div id="group-info">
-                               <a data-toggle="modal" data-target="#participantInfoModal" (click) = "getGroupParticipantInfo(mainCustomerId, chatWithGroupDetails.group_id)" href="javascript:void(0)">{{chatWithGroupDetails.totalMembers}} participants</a>
+                                <a data-toggle="modal" id="count-participant" data-target="#participantInfoModal" (click) = "getGroupParticipantInfo(mainCustomerId, chatWithGroupDetails.group_id)" href="javascript:void(0)">
+                                   <span>{{chatWithGroupDetails.totalMembers}} participants</span>
+                                </a>
                                  <!-- Modal -->
                                 <div class="modal fade" id="participantInfoModal" role="dialog">
                                     <div class="modal-dialog">
@@ -81,12 +83,29 @@
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
-                                                <div *ngFor = " let participant of participantInfo " >
-                                                    <img src="{{participant.image}}" class="rounded-circle" width="50" height="50"> {{participant.name}}
+                                                <div id="group-edit-description"> 
+                                                    <div> 
+                                                        <img src="{{chatWithGroupDetails.image}}" class="rounded-circle" width="70" height="70"> 
+                                                    </div>
+                                                    <div><span>{{chatWithGroupDetails.name}}</span> <i class="fa fa-edit" id="edit-icon"></i></div>
+                                                    
+                                                </div> 
+                                                <div class="row participant-info"  *ngFor = " let participant of participantInfo ">
+                                                    <div class="col-sm-2">
+                                                        <img src="{{participant.member_details.image}}" class="rounded-circle" width="50" height="50">
+                                                    </div> 
+                                                    <div class="col-sm-7">
+                                                        {{participant.member_details.name}}
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <div *ngIf="participant.is_admin">
+                                                            <button class="btn btn-default button-admin">Admin</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
                                             </div>
                                         </div>
                                     </div>

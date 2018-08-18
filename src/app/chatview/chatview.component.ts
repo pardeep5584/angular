@@ -21,12 +21,12 @@ export class ChatviewComponent implements OnInit {
     // for show welcome message
     this.dataser.isShowWelcomeMessage.subscribe((data) =>{
       this.isWelcomeMessge = data;
-      console.log(this.isWelcomeMessge);
+      // console.log(this.isWelcomeMessge);
     });
     // got one to one or one to many
     this.dataser.isChatWithTypeInfo.subscribe((data) =>{
       this.isChatWithFlag = data;
-      console.log(this.isChatWithFlag);
+      // console.log(this.isChatWithFlag);
     }); 
     // chat messages
     this.dataser.chatMessages.subscribe(data => { 
