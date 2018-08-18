@@ -58,3 +58,6 @@
     background-color: white;
     color: #2db52d;
 }
+.edit-member-info:hover {
+    color: black;
+}

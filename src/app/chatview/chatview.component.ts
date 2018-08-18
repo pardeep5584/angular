@@ -51,9 +51,14 @@ export class ChatviewComponent implements OnInit {
   ngOnInit() {
   }
   participantInfo;
+  isAdminForThisGroup;
   getGroupParticipantInfo( customerId, groupId) {
     this.participantInfo = this.dataser.getGroupParticipantInfo(customerId, groupId);
     console.log(this.participantInfo);
+    this.isAdminForThisGroup = this.dataser.isMemberAdmin(customerId, groupId);
+    console.log(this.isAdminForThisGroup)
   }
+  
+  
 
 }

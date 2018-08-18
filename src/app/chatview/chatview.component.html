@@ -95,7 +95,15 @@
                                                         <img src="{{participant.member_details.image}}" class="rounded-circle" width="50" height="50">
                                                     </div> 
                                                     <div class="col-sm-7">
-                                                        {{participant.member_details.name}}
+                                                        <ng-container
+                                                            *ngIf="isAdminForThisGroup && participant.member_details.customer_id != mainCustomerId; then editMemberInfo; else memberInfo">
+                                                        </ng-container>
+                                                        <ng-template #editMemberInfo>
+                                                            <div class="edit-member-info">{{participant.member_details.name}}</div>
+                                                        </ng-template>
+                                                        <ng-template #memberInfo>
+                                                            {{participant.member_details.name}}
+                                                        </ng-template>
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div *ngIf="participant.is_admin">
