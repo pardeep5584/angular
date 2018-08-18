@@ -99,7 +99,29 @@
                                                             *ngIf="isAdminForThisGroup && participant.member_details.customer_id != mainCustomerId; then editMemberInfo; else memberInfo">
                                                         </ng-container>
                                                         <ng-template #editMemberInfo>
-                                                            <div class="edit-member-info">{{participant.member_details.name}}</div>
+                                                            <div class="">
+                                                                <a class="edit-member-info"href="#linkid{{participant.member_details.customer_id}}" data-toggle="collapse">
+                                                                    <span>{{participant.member_details.name}}</span>
+                                                                </a>
+                                                                <div id="linkid{{participant.member_details.customer_id}}" class="collapse participant-info-tab">
+                                                                    <ng-container
+                                                                    *ngIf="!participant.is_admin; then addAdminTab; else removeAdminTab">
+                                                                    </ng-container>
+                                                                    <ng-template #addAdminTab>
+                                                                        <p class="participant-info-tab-action">Message <span>{{participant.member_details.name}}</span></p>
+                                                                        <p class="participant-info-tab-action">View <span>{{participant.member_details.name}}</span></p>
+                                                                        <p class="participant-info-tab-action">Remove <span>{{participant.member_details.name}}</span></p>
+                                                                        <p class="participant-info-tab-action">Make group admin</p>
+                                                                    </ng-template>
+                                                                    <ng-template #removeAdminTab>
+                                                                            <p class="participant-info-tab-action">Message <span>{{participant.member_details.name}}</span></p>
+                                                                            <p class="participant-info-tab-action">View <span>{{participant.member_details.name}}</span></p>
+                                                                            <p class="participant-info-tab-action">Remove <span>{{participant.member_details.name}}</span></p>
+                                                                            <p class="participant-info-tab-action">Remove group admin</p>
+                                                                    </ng-template>
+                                                                </div>
+                                                            </div>
+                                                            
                                                         </ng-template>
                                                         <ng-template #memberInfo>
                                                             {{participant.member_details.name}}
@@ -107,7 +129,7 @@
                                                     </div>
                                                     <div class="col-sm-3">
                                                         <div *ngIf="participant.is_admin">
-                                                            <button class="btn btn-default button-admin">Admin</button>
+                                                            <button class="btn btn-default button-admin" disabled>Admin</button>
                                                         </div>
                                                     </div>
                                                 </div>

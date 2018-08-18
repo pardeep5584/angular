@@ -58,6 +58,22 @@
     background-color: white;
     color: #2db52d;
 }
+.edit-member-info {
+    color: gray;
+}
 .edit-member-info:hover {
     color: black;
+    cursor: context-menu;
+}
+.participant-info-tab-action{
+    margin: 0px;
+    padding: 0px;
+    color: black;
+}
+.participant-info-tab-action:hover{
+    color: red;
+    cursor: pointer;
+}
+.participant-info-tab {
+    padding-left: 30px;
 }
