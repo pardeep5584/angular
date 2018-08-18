@@ -1,0 +1,129 @@
+<div id="chat-view">
+    <ng-container
+        *ngIf="isWelcomeMessge; then welcomeMessage; else showChat">
+    </ng-container>
+    <ng-template #welcomeMessage>
+        <p>Wecome to chat app</p>
+    </ng-template>
+    <ng-template #showChat>
+            <ng-container
+            *ngIf="isChatWithFlag; then chatWithMeberOneToOne; else chatWithGroupOnToMany">
+            </ng-container>
+            <ng-template #chatWithMeberOneToOne>
+                <div class="row"  id="chat-info">
+                    <div class="col-sm-1">
+                        <div id="chat-with-image">
+                            <img src="{{chatWithMemberDetails.image}}" class="rounded-circle" width="50" height="50"> 
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <div id="chat-with-name"> 
+                            {{chatWithMemberDetails.name}}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <!-- <div id="chat-with-day">
+                                {{chatWithMemberDetails.name}}
+                        </div>  -->
+                    </div>
+                </div>
+                <hr>
+                <div id="chat-details">
+                    <div *ngFor = " let message of messages " >
+                        <ng-container
+                        *ngIf="message.owner_id == mainCustomerId ; then messageIsSend; else messageRecevied">
+                        </ng-container>
+                        <ng-template #messageIsSend>   
+                            <div class="row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-9">
+                                    <div class="message-send"> 
+                                        {{message.message_body}}
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template #messageRecevied>
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <div class="message-received"> 
+                                        {{message.message_body}}
+                                    </div>
+                                </div>
+                                <div class="col-sm-3"></div>
+                            </div>
+                        </ng-template>
+                    </div>   
+                </div>
+            </ng-template>
+
+                <ng-template #chatWithGroupOnToMany>
+                    <div class="row"  id="chat-info">
+                        <div class="col-sm-1">
+                            <div id="chat-with-image">
+                                <img src="{{chatWithGroupDetails.image}}" class="rounded-circle" width="50" height="50"> 
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div id="chat-with-name"> 
+                                {{chatWithGroupDetails.name}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div id="group-info">
+                               <a data-toggle="modal" data-target="#participantInfoModal" (click) = "getGroupParticipantInfo(mainCustomerId, chatWithGroupDetails.group_id)" href="javascript:void(0)">{{chatWithGroupDetails.totalMembers}} participants</a>
+                                 <!-- Modal -->
+                                <div class="modal fade" id="participantInfoModal" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div *ngFor = " let participant of participantInfo " >
+                                                    <img src="{{participant.image}}" class="rounded-circle" width="50" height="50"> {{participant.name}}
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div id="chat-details">
+                        <div *ngFor = " let message of messages " >
+                            <ng-container
+                            *ngIf="message.owner_id == mainCustomerId ; then messageIsSend; else messageRecevied">
+                            </ng-container>
+                            <ng-template #messageIsSend>   
+                                <div class="row">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-9">
+                                        <div class="message-send"> 
+                                            {{message.message_body}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <ng-template #messageRecevied>
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <div class="message-received"> 
+                                            {{message.message_body}}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3"></div>
+                                </div>
+                            </ng-template>
+                        </div>   
+                    </div>
+            </ng-template>
+    </ng-template>
+    
+  </div> 
+   

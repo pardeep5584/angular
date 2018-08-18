@@ -1,0 +1,37 @@
+#chat-view {
+    background-color: white;
+    padding-top: 10px;
+}
+
+#chat-info {
+    height: 30%;
+    min-height: 80px;
+    /* border-bottom: 1px solid gray; */
+}
+#chat-with-name {
+    line-height: 50px;
+    /* text-align: center; */
+}
+#group-info {
+    line-height: 50px;
+    color: gray;
+}
+#chat-details {
+    height: 70%;
+}
+.message-received {
+    background-color: #bed9e6;
+    padding: 10px;
+    border-radius: 7px;
+    text-align: left;
+    margin-top: 10px;
+    display: inline-block;
+}
+.message-send {
+    background-color:#e4e1cf;
+    padding: 10px;
+    border-radius: 7px;
+    text-align: right;
+    margin-top: 10px;
+    float: right;
+}

@@ -1,0 +1,83 @@
+<div id="personal">
+  <div class="row" id="personal-info">
+      <div class="col-sm-3">
+          <div id="customer-profile-pic">
+            <img src="{{personlData.profile_image}}" class="rounded-circle" alt="Cinque Terre" width="70" height="70">
+          </div>
+      </div>
+      <div class="col-sm-6">
+        <div id="customer-name">
+          {{personlData.name}}
+          <i>{{personlData.id}}</i>
+        </div> 
+      </div>
+      <div class="col-sm-3">
+        <div id="customer-tabs">
+          <p>icons</p>
+        </div> 
+      </div>
+  </div>
+  <hr>
+  <div id="chating-list">
+    <div *ngFor = " let data of personlData.chat_list " >
+      <div class="chating-with" >
+        
+        <ng-container
+          *ngIf="data.is_group; then group; else member">
+        </ng-container>
+
+        <ng-template #member>
+          <div class="row" (click) = "setMemberChatData(personlData.id, data.chat_id, data.chat_with_data.customer_id)">
+            <div class="col-sm-2">
+                <div class="chat-with-image">
+                  <img src="{{data.chat_with_data.image}}" class="rounded-circle" width="50" height="50"> 
+                </div>
+            </div>
+            <div class="col-sm-7">
+              <div class="chat-with-name"> 
+                {{data.chat_with_data.name}}
+                : <i>{{data.chat_with_data.customer_id}}</i>
+              </div> 
+              <div class="last-chat-message">
+                {{data.last_message.message_body}}
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="chat-with-day">
+                <p>{{data.last_message.message_time}}</p>
+              </div> 
+            </div>
+          </div>  
+        </ng-template>
+
+        <ng-template #group>
+          <div class="row" (click) = "setGroupChatData(personlData.id, data.chat_id, data.chat_with_data.group_id)">
+            <div class="col-sm-2">
+                <div class="chat-with-image">
+                  <img src="{{data.chat_with_data.image}}" class="rounded-circle" width="50" height="50"> 
+                </div>
+            </div>
+            <div class="col-sm-7">
+              <div class="chat-with-name">
+                <b>{{data.chat_with_data.name}}</b>
+                : <i>{{data.chat_with_data.group_id}}</i>
+              </div> 
+              <div class="last-chat-message">
+                {{data.last_message.message_body}}
+              </div> 
+            </div>
+            <div class="col-sm-3">
+              <div class="chat-with-day">
+                <p>{{data.last_message.message_time}}</p>
+              </div> 
+            </div>
+        </div>
+      </ng-template>
+
+     
+
+
+      </div>
+    </div> 
+  </div>
+</div>
