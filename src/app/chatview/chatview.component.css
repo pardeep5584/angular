@@ -6,7 +6,7 @@
 #chat-info {
     height: 30%;
     min-height: 80px;
-    /* border-bottom: 1px solid gray; */
+    border-bottom: 1px solid #dcd4d4;
 }
 #chat-with-name {
     line-height: 50px;
