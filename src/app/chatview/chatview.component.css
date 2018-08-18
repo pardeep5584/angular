@@ -16,8 +16,8 @@
     line-height: 50px;
     color: gray;
 }
-#chat-details {
-    height: 70%;
+.chat-details {
+    height: 500px;
 }
 .message-received {
     background-color: #bed9e6;

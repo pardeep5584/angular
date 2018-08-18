@@ -27,7 +27,7 @@
                         </div>  -->
                     </div>
                 </div>
-                <div id="chat-details">
+                <div class="chat-details">
                     <div *ngFor = " let message of messages " >
                         <ng-container
                         *ngIf="message.owner_id == mainCustomerId ; then messageIsSend; else messageRecevied">
@@ -53,6 +53,23 @@
                             </div>
                         </ng-template>
                     </div>   
+                </div>
+                <div class="chat-tab">
+                    <!-- <form action="/action_page.php">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>     -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-smile-o" aria-hidden="true"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Type a message here">
+                        <div class="input-group-append">
+                            <!-- <button class="btn btn-default" type="button">OK</button>   -->
+                        </div>
+                    </div>
                 </div>
             </ng-template>
 
@@ -143,7 +160,7 @@
                     </div>
                 </div>
                
-                <div id="chat-details">
+                <div class="chat-details">
                     <div *ngFor = " let message of messages " >
                         <ng-container
                         *ngIf="message.owner_id == mainCustomerId ; then messageIsSend; else messageRecevied">
@@ -170,7 +187,23 @@
                         </ng-template>
                     </div>   
                 </div>
-
+                <div class="chat-tab">
+                        <!-- <form action="/action_page.php">
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                            </div>
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </form>     -->
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-smile-o" aria-hidden="true"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Type a message here">
+                            <div class="input-group-append">
+                                <!-- <button class="btn btn-default" type="button">OK</button>   -->
+                            </div>
+                        </div>
+                    </div>
             </ng-template>
     </ng-template>
     
