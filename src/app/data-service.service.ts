@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject } from 'rxjs';
+import { Observable , BehaviorSubject } from 'rxjs';
+import {Http, Headers} from '@angular/http';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class DataServiceService {
  
   // function called by chat.component
   setMemberChatMessages(){
+    // console.log("a--------->"+this.getCustomById().subscribe((resNew)=>console.log(resNew.json())));
+    // var a = this.getCustomById().subscribe((resNew)=>console.log(resNew.json()));
+    // console.log("a"+a);
+
     let messages = this.messageDetails.filter((message)=>{
         return message.chat_id == this.chatId;
     });
@@ -42,7 +47,7 @@ export class DataServiceService {
     this.isShowWelcomeMessage.next(false);
   }
 
-  constructor() {
+  constructor(public http : Http) {
     
    }
   customerTableData = [
@@ -214,6 +219,8 @@ export class DataServiceService {
   ];
     
   getPersonalInfo(customerId) {
+    // calll api for get customer personal info from database
+    console.log("JAI SHREE RAM.");
     // set customer use for chat view component
     this.mainCustomerId = customerId;
 
@@ -230,6 +237,10 @@ export class DataServiceService {
       }
     }
     return personalInfo;
+  }
+
+  getCustomById() {
+    return this.http.get('http://localhost:8080/customer/5ba7233c29f6f8f3ff811fed');
   }
 
   getChatList(chatIds, customerId) {
@@ -261,8 +272,6 @@ export class DataServiceService {
           // break the for loop if we got chat datas.
           break;
         }
-
-
       }   
     }
     return (chatsList); 
@@ -282,6 +291,10 @@ export class DataServiceService {
     } 
     return chatWith;   
   }
+
+	getAllGroups() {
+		return this.http.get('http://localhost:8080/group');
+	}
   
   getChatWithGroup(groupId) {
     var chatWith;

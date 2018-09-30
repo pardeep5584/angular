@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { ChatsComponent } from './chats/chats.component';
 import { ChatviewComponent } from './chatview/chatview.component';
 import { DataServiceService } from './data-service.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { DataServiceService } from './data-service.service';
     ChatviewComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule
   ],
   providers: [
     DataServiceService

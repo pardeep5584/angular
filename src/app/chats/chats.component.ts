@@ -11,27 +11,35 @@ export class ChatsComponent implements OnInit {
   ngOnInit() {
   }
   personlData = {} ; 
-
+  personalDataNode = {};
   constructor ( private dataser : DataServiceService ) {
     this.personlData = dataser.getPersonalInfo(1);
+
+    // this.personalDataNode = dataser.getPersonalInfo(1);
+
   } 
  
+  userAllMessages;
   setMemberChatData(loginedCustomerId, chatId, chatWithCustomerId) {
     this.dataser.loginedCustomerId = loginedCustomerId;
     this.dataser.chatId = chatId;
     this.dataser.chatWithCustomerId = chatWithCustomerId;
-    // set and flag that used to check that is one to one chat or its group chat
-    // this.dataser.isChatWithMember = true;
     this.dataser.setMemberChatMessages();
-    
+    // console.log("----------------//////-----------------");
+    // this.dataser.getCustomById().subscribe((resNew)=>console.log(resNew.json()));
+    // this.dataser.getCustomById().subscribe(
+    //   function(res) {
+    //     // console.log(res.json())
+    //     this.userAllMessages = res.json();
+    //     console.log(this.userAllMessages);
+    //   }
+    // );
   }
 
   setGroupChatData(loginedCustomerId, chatId, chatWithGroupId) {
     this.dataser.loginedCustomerId = loginedCustomerId;
     this.dataser.chatId = chatId;
     this.dataser.chatWithGroupId = chatWithGroupId;
-    // set and flag that used to check that is one to one chat or its group chat
-    // this.dataser.isChatWithMember = false;
     this.dataser.setGroupChatMessages();
   }
 }
