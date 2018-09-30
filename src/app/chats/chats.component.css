@@ -5,7 +5,8 @@
 
 #personal-info {
     height: 30%;
-    /* border-bottom: 1px solid gray; */
+    border-bottom: 1px solid #dcd4d4;
+    height: 80px;
 }
 #customer-name {
     line-height: 70px;

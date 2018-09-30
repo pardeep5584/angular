@@ -21,39 +21,44 @@ export class ChatviewComponent implements OnInit {
     // for show welcome message
     this.dataser.isShowWelcomeMessage.subscribe((data) =>{
       this.isWelcomeMessge = data;
-      console.log(this.isWelcomeMessge);
+      // console.log(this.isWelcomeMessge);
     });
     // got one to one or one to many
     this.dataser.isChatWithTypeInfo.subscribe((data) =>{
       this.isChatWithFlag = data;
-      console.log(this.isChatWithFlag);
+      // console.log(this.isChatWithFlag);
     }); 
     // chat messages
     this.dataser.chatMessages.subscribe(data => { 
       this.messages = data;
-      console.log(this.messages);
+      // console.log(this.messages);
     });
     // chat with customer
     this.dataser.chatWithCustomerInfo.subscribe(data => {
       this.chatWithMemberDetails = data;
-      console.log(this.chatWithMemberDetails);
+      // console.log(this.chatWithMemberDetails);
     }); 
     // chat with group 
     this.dataser.chatWithGroupInfo.subscribe(data => {
       this.chatWithGroupDetails = data;
-      console.log(this.chatWithGroupDetails);
+      // console.log(this.chatWithGroupDetails);
     }); 
 
-
-    
   }
 
   ngOnInit() {
+    // console.log("------------------------------------");
+    // this.dataser.getAllGroups().subscribe((res)=>console.log(res.json()))
   }
   participantInfo;
+  isAdminForThisGroup;
   getGroupParticipantInfo( customerId, groupId) {
     this.participantInfo = this.dataser.getGroupParticipantInfo(customerId, groupId);
-    console.log(this.participantInfo);
+    // console.log(this.participantInfo);
+    this.isAdminForThisGroup = this.dataser.isMemberAdmin(customerId, groupId);
+    // console.log(this.isAdminForThisGroup)
   }
+  
+  
 
 }
