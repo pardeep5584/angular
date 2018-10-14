@@ -16,8 +16,12 @@ export class ChatviewComponent implements OnInit {
   // customer id
   mainCustomerId;
   constructor ( private dataser : DataServiceService ) {
-    this.mainCustomerId = dataser.mainCustomerId;
-    // flag
+    // this.mainCustomerId = 1;
+    this.dataser.loginedCustomerId.subscribe(data => { 
+      this.mainCustomerId = data;
+      // console.log(this.mainCustomerId);
+    });
+
     // for show welcome message
     this.dataser.isShowWelcomeMessage.subscribe((data) =>{
       this.isWelcomeMessge = data;

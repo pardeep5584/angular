@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataServiceService } from '../data-service.service';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-chats',
@@ -8,32 +9,35 @@ import { DataServiceService } from '../data-service.service';
 })
 export class ChatsComponent implements OnInit {
 
+  personlData = {};
+  personalDataNode = {};
+  newData = {};
+  constructor(private dataser: DataServiceService) {
+    this.dataser.loginedCustomerId.next("5bc22e107941ab1414911048");
+    // this.personlData = dataser.getPersonalInfo(1);
+    this.dataser.getCustomerById('5bc22e107941ab1414911048').subscribe(res => {
+      var customerData = res.json();
+      this.personlData = {
+        "id": customerData[0]._id,
+        "name": customerData[0].name,
+        "last_seen": customerData[0].last_seen,
+        "profile_image": customerData[0].profile_image,
+        "chat_list": this.dataser.getChatList(customerData[0].chat_ids, "5bc22e107941ab1414911048")
+      };
+      // console.log(this.personlData);
+    });
+  }
+
   ngOnInit() {
   }
-  personlData = {} ; 
-  personalDataNode = {};
-  constructor ( private dataser : DataServiceService ) {
-    this.personlData = dataser.getPersonalInfo(1);
-
-    // this.personalDataNode = dataser.getPersonalInfo(1);
-
-  } 
- 
   userAllMessages;
+
   setMemberChatData(loginedCustomerId, chatId, chatWithCustomerId) {
-    this.dataser.loginedCustomerId = loginedCustomerId;
+    console.log("loginedCustomerId: " + loginedCustomerId + " chatId:" + chatId + " chatWithCustomerId:" + chatWithCustomerId );
+
     this.dataser.chatId = chatId;
     this.dataser.chatWithCustomerId = chatWithCustomerId;
     this.dataser.setMemberChatMessages();
-    // console.log("----------------//////-----------------");
-    // this.dataser.getCustomById().subscribe((resNew)=>console.log(resNew.json()));
-    // this.dataser.getCustomById().subscribe(
-    //   function(res) {
-    //     // console.log(res.json())
-    //     this.userAllMessages = res.json();
-    //     console.log(this.userAllMessages);
-    //   }
-    // );
   }
 
   setGroupChatData(loginedCustomerId, chatId, chatWithGroupId) {
