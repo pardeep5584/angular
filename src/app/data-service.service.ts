@@ -431,6 +431,7 @@ chatTableData = [
     return false;
   }
 
+  // customers
   getCustomers() {
     console.log("JAI SHREE RAM JI");
     return this.http.get('http://localhost:8080/customers/');
@@ -455,4 +456,11 @@ chatTableData = [
     console.log("JAI SHREE RAM");
     return this.http.delete(`http://localhost:8080/customercd/${id}`);
   }
+
+  // chats
+  getChatsByIds(ids) {
+    console.log("JAI SHREE RAM");
+    return this.http.get(`http://localhost:8080/chats/${ids}`);
+  }
+
 }

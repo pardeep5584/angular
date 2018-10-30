@@ -29,6 +29,21 @@ export class ChatsComponent implements OnInit {
   }
 
   ngOnInit() {
+    var chatIdsList = [ 
+      "5bc2e14d7941ab1414911af7",
+      "5bc2e18d7941ab1414911b15",
+      "5bc2e1a97941ab1414911b21",
+      "5bc2e1c97941ab1414911b32",
+      "5bc2e1ea7941ab1414911b43",
+      "5bc2e2937941ab1414911b84"
+    ];
+    for(var chatId in chatIdsList) {
+    	console.log(chatIdsList[chatId]);
+    }
+    this.dataser.getChatsByIds(chatIdsList).subscribe(res => {
+      console.log(res.json());
+    });  
+
   }
   userAllMessages;
 
@@ -38,6 +53,7 @@ export class ChatsComponent implements OnInit {
     this.dataser.chatId = chatId;
     this.dataser.chatWithCustomerId = chatWithCustomerId;
     this.dataser.setMemberChatMessages();
+    console.log(this.personlData);
   }
 
   setGroupChatData(loginedCustomerId, chatId, chatWithGroupId) {
