@@ -61,7 +61,7 @@ export class DataServiceService {
             5,
             6
         ],
-        "_id": "5bc22e107941ab1414911048",
+        "_id": "5c03c24fca156059ddf59140",
         "name": "pardeep kumar",
         "profile_image": "assets/images/customer-1-image.jpg"
     },
@@ -77,7 +77,7 @@ export class DataServiceService {
             5,
             6
         ],
-        "_id": "5bc22e7e7941ab1414911073",
+        "_id": "5c03c269ca156059ddf59154",
         "name": "sonu kumars",
         "profile_image": "assets/images/sonu.jpeg"
     },
@@ -92,7 +92,7 @@ export class DataServiceService {
             2,
             5
         ],
-        "_id": "5bc22e947941ab141491107e",
+        "_id": "5c03c285ca156059ddf5915e",
         "name": "Dharmernder",
         "profile_image": "assets/images/dharmender.jpeg"
     },
@@ -107,7 +107,7 @@ export class DataServiceService {
             3,
             6
         ],
-        "_id": "5bc22ea07941ab1414911082",
+        "_id": "5c03c2b6ca156059ddf59177",
         "name": "Paras agarwal",
         "profile_image": "assets/images/paras.jpeg"
     },
@@ -122,7 +122,7 @@ export class DataServiceService {
             4,
             5
         ],
-        "_id": "5bc22eab7941ab1414911087",
+        "_id": "5c03c2c0ca156059ddf5917d",
         "name": "rahul kumar",
         "profile_image": "assets/images/rahul.jpeg"
     }
@@ -131,95 +131,98 @@ export class DataServiceService {
 chatTableData = [
     {
         "members": [
-            "5bc22e107941ab1414911048",
-            "5bc22e7e7941ab1414911073"
+            "5c03c24fca156059ddf59140",
+            "5c03c269ca156059ddf59154"
         ],
-        "_id": "5bc2e14d7941ab1414911af7",
+        "_id": "5c03c755ca156059ddf5932b",
         "is_group": false,
         "last_message_id": "5bc2eb007941ab1414911e1b",
         "group_id": ""
     },
     {
         "members": [
-            "5bc22e107941ab1414911048",
-            "5bc22e947941ab141491107e"
+            "5c03c24fca156059ddf59140",
+            "5c03c285ca156059ddf5915e"
         ],
-        "_id": "5bc2e18d7941ab1414911b15",
+        "_id": "5c03c79cca156059ddf5934c",
         "is_group": false,
         "last_message_id": "5bc2ed507941ab1414911f4f",
         "group_id": ""
     },
     {
         "members": [
-            "5bc22e107941ab1414911048",
-            "5bc22ea07941ab1414911082"
+            "5c03c24fca156059ddf59140",
+            "5c03c2b6ca156059ddf59177"
         ],
-        "_id": "5bc2e1a97941ab1414911b21",
+        "_id": "5c03c7cbca156059ddf5935f",
         "is_group": false,
         "last_message_id": "5bc2ee177941ab1414911f89",
         "group_id": ""
     },
+
+
     {
         "members": [
-            "5bc22e107941ab1414911048",
-            "5bc22eab7941ab1414911087"
+            "5c03c24fca156059ddf59140",
+            "5c03c2c0ca156059ddf5917d"
         ],
-        "_id": "5bc2e1c97941ab1414911b32",
+        "_id": "5c03c807ca156059ddf5937c",
         "is_group": false,
         "last_message_id": "5bc2ee467941ab1414911f99",
         "group_id": ""
     },
     {
         "members": [
-            "5bc22e947941ab141491107e",
-            "5bc22e107941ab1414911048",
-            "5bc22e7e7941ab1414911073",
-            "5bc22eab7941ab1414911087"
+            "5c03c285ca156059ddf5915e",
+            "5c03c24fca156059ddf59140",
+            "5c03c269ca156059ddf59154",
+            "5c03c2c0ca156059ddf5917d"
         ],
-        "_id": "5bc2e1ea7941ab1414911b43",
+        "_id": "5c03c839ca156059ddf59390",
         "is_group": true,
         "last_message_id": "5bc2ee917941ab1414911faf",
-        "group_id": "5b8f415e814d4af064d05f28"
+        "group_id": "5c03c4f8ca156059ddf59241"
     },
+    
     {
         "members": [
-            "5bc22ea07941ab1414911082",
-            "5bc22e107941ab1414911048",
-            "5bc22e7e7941ab1414911073"
+            "5c03c2b6ca156059ddf59177",
+            "5c03c24fca156059ddf59140",
+            "5c03c269ca156059ddf59154"
         ],
-        "_id": "5bc2e2937941ab1414911b84",
+        "_id": "5c03c86eca156059ddf593a3",
         "is_group": true,
         "last_message_id": "5bc2eebb7941ab1414911fc8",
-        "group_id": "5b8f415e814d4af064d05f29"
+        "group_id": "5c03c52bca156059ddf5925a"
     }
 ];
 
   groupData = [
     {
         "admin_id": [
-            "5bc22e7e7941ab1414911073"
+            "5c03c269ca156059ddf59154"
         ],
         "members": [
-            "5bc22e107941ab1414911048",
-            "5bc22e7e7941ab1414911073",
-            "5bc22e947941ab141491107e",
-            "5bc22eab7941ab1414911087"
+            "5c03c24fca156059ddf59140",
+            "5c03c269ca156059ddf59154",
+            "5c03c285ca156059ddf5915e",
+            "5c03c2c0ca156059ddf5917d"
         ],
-        "_id": "5b8f415e814d4af064d05f28",
+        "_id": "5c03c4f8ca156059ddf59241",
         "title": "rockstar",
         "image": "assets/images/aajtak.png"
     },
     {
         "admin_id": [
-            "5bc22e107941ab1414911048",
-            "5bc22e7e7941ab1414911073"
+            "5c03c24fca156059ddf59140",
+            "5c03c269ca156059ddf59154"
         ],
         "members": [
-            "5bc22e107941ab1414911048",
-            "5bc22e7e7941ab1414911073",
-            "5bc22ea07941ab1414911082"
+            "5c03c24fca156059ddf59140",
+            "5c03c269ca156059ddf59154",
+            "5c03c2b6ca156059ddf59177"
         ],
-        "_id": "5b8f415e814d4af064d05f29",
+        "_id": "5c03c52bca156059ddf5925a",
         "title": "funny joks",
         "image": "assets/images/Zee-News-Network.jpg"
     }
@@ -228,52 +231,52 @@ chatTableData = [
   messageDetails = [
     {
         "_id": "5bc2eb007941ab1414911e1b",
-        "chat_id": "5bc2e14d7941ab1414911af7",
+        "chat_id": "5c03c755ca156059ddf5932b",
         "message_body": "hi sonu, hi hasnd asd sa dasdas das das da sd adas   dasidsdweie ew 8ewr",
         "time": null,
-        "owner_id": "5bc22e107941ab1414911048"
+        "owner_id": "5c03c24fca156059ddf59140"
     },
     {
         "_id": "5bc2ed507941ab1414911f4f",
-        "chat_id": "5bc2e18d7941ab1414911b15",
+        "chat_id": "5c03c79cca156059ddf5934c",
         "message_body": "hi pardeep",
         "time": null,
-        "owner_id": "5bc22e947941ab141491107e"
+        "owner_id": "5c03c285ca156059ddf5915e"
     },
     {
         "_id": "5bc2ee177941ab1414911f89",
-        "chat_id": "5bc2e1a97941ab1414911b21",
+        "chat_id": "5c03c7cbca156059ddf5935f",
         "message_body": "hi Paras",
         "time": null,
-        "owner_id": "5bc22e107941ab1414911048"
+        "owner_id": "5c03c24fca156059ddf59140"
     },
     {
         "_id": "5bc2ee467941ab1414911f99",
-        "chat_id": "5bc2e1c97941ab1414911b32",
+        "chat_id": "5c03c807ca156059ddf5937c",
         "message_body": "hi pardeep, k kar ha.",
         "time": null,
-        "owner_id": "5bc22eab7941ab1414911087"
+        "owner_id": "5c03c2c0ca156059ddf5917d"
     },
     {
         "_id": "5bc2ee917941ab1414911faf",
-        "chat_id": "5bc2e1ea7941ab1414911b43",
+        "chat_id": "5c03c839ca156059ddf59390",
         "message_body": "Hi guys.",
         "time": null,
-        "owner_id": "5bc22e107941ab1414911048"
+        "owner_id": "5c03c24fca156059ddf59140"
     },
     {
         "_id": "5bc2eebb7941ab1414911fc8",
-        "chat_id": "5bc2e2937941ab1414911b84",
+        "chat_id": "5c03c86eca156059ddf593a3",
         "message_body": "we have, crateat a group hoafdfid asd adasdas well are you.",
         "time": null,
-        "owner_id": "5bc22ea07941ab1414911082"
+        "owner_id": "5c03c2b6ca156059ddf59177"
     },
     {
         "_id": "5bc2eede7941ab1414911fd4",
-        "chat_id": "5bc2e14d7941ab1414911af7",
+        "chat_id": "5c03c755ca156059ddf5932b",
         "message_body": "hi pardeep hho are you",
         "time": null,
-        "owner_id": "5bc22e7e7941ab1414911073"
+        "owner_id": "5c03c269ca156059ddf59154"
     }
 ];
     
@@ -298,7 +301,7 @@ chatTableData = [
   // }
     
   getChatList(chatIds, customerId) {
-    // console.log(chatIds);
+    console.log(chatIds + "---" + customerId);
     var chatsList = [];
     var chatWithData;
     var indexOfRemoveElement;
@@ -352,7 +355,7 @@ chatTableData = [
       } 
     } 
     // var chatWithb;
-    // this.getCustomerById('5bc22e107941ab1414911048').subscribe(res => {
+    // this.getCustomerById('5c03c24fca156059ddf59140').subscribe(res => {
     //   var customerData = res.json();
     //   console.log(customerData[0]._id);
     //   chatWithb = {
@@ -452,9 +455,9 @@ chatTableData = [
     return this.http.put(`http://localhost:8080/customer/${id}`, data);
   }
 
-  deleteCustomer(id) {
+  deleteCustomer(id) { 
     console.log("JAI SHREE RAM");
-    return this.http.delete(`http://localhost:8080/customercd/${id}`);
+    return this.http.delete(`http://localhost:8080/customercd/${id}`);  
   }
 
   // chats
