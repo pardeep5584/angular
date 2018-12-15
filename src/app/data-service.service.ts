@@ -21,20 +21,22 @@ export class DataServiceService {
   public chatWithGroupInfo: BehaviorSubject<any> = new BehaviorSubject([]);
 
   setMemberChatMessages(){
-    let messages = this.messageDetails.filter((message)=>{
-        return message.chat_id == this.chatId;
-    });
-    this.chatMessages.next(messages); 
+    // let messages = this.messageDetails.filter((message)=>{
+    //     return message.chat_id == this.chatId;
+    // });
+    // this.chatMessages.next(messages); 
+    this.getMessageForChat(this.chatId);
     this.chatWithCustomerInfo.next(this.getChatWithCustomer(this.chatWithCustomerId));      
     this.isChatWithTypeInfo.next(true); 
     this.isShowWelcomeMessage.next(false);
   }
 
   setGroupChatMessages(){
-    let messages = this.messageDetails.filter((message)=>{
-        return message.chat_id == this.chatId;
-    });
-    this.chatMessages.next(messages); 
+    // let messages = this.messageDetails.filter((message)=>{
+    //     return message.chat_id == this.chatId;
+    // });
+    this.getMessageForChat(this.chatId);
+    // this.chatMessages.next(messages); 
     this.chatWithGroupInfo.next(this.getChatWithGroup(this.chatWithGroupId));      
     this.isChatWithTypeInfo.next(false); 
     this.isShowWelcomeMessage.next(false);
@@ -409,6 +411,23 @@ getGroupParticipant(groupId) {
     });
     return promise;
 }
+
+getMessageForChat(chatIs) {
+    let promise = new Promise((resolve, reject) => {
+        this.http.get(`http://localhost:8080/chat/${chatIs}/messages`)
+          .toPromise()
+          .then(
+            res => {
+                var messages = res.json(); 
+                this.chatMessages.next(messages);
+                resolve(); 
+                // this.getttingGropPopInfo.next(d); 
+            }
+          );
+    });
+    return promise;
+}
+
 /////////////////////////////////////////////////////////
   // customers api calls
 getCustomers() {
@@ -447,5 +466,6 @@ getMessageByIds(ids) {
     console.log("JAI SHREE RAM");
     return this.http.get(`http://localhost:8080/message/${ids}`);
 }
+
 
 }
