@@ -59,7 +59,7 @@
                         </div>
                         <input type="text" class="form-control" placeholder="Type a message here">
                         <div class="input-group-append">
-                            <button class="btn btn-default" type="button"><i class="fa fa-arrow-circle-right"></i></button>  
+                            <button class="btn btn-default" type="button" (click) = "sendMessage(mainCustomerId)"><i class="fa fa-arrow-circle-right"></i></button>  
                         </div>
                     </div>
                 </div>
@@ -79,9 +79,12 @@
                     </div>
                     <div class="col-sm-4">
                         <div id="group-info">
-                            <a data-toggle="modal" id="count-participant" data-target="#participantInfoModal" (click) = "getGroupParticipantInfo(mainCustomerId, chatWithGroupDetails.group_id)" href="javascript:void(0)">
+                            <a data-toggle="modal" id="count-participant" data-target="#participantInfoModal" (click) = "getTest(mainCustomerId, chatWithGroupDetails.group_id)" href="javascript:void(0)">
                                 <span>{{chatWithGroupDetails.totalMembers}} participants</span>
                             </a>
+                            <!-- <a data-toggle="modal" (click) = "getGroupParticipantInfo(mainCustomerId, chatWithGroupDetails.group_id)" href="javascript:void(0)">
+                                <span>{{chatWithGroupDetails.totalMembers}} test</span>
+                            </a> -->
                             <div class="modal fade" id="participantInfoModal" role="dialog">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -98,9 +101,12 @@
                                             </div> 
                                             <div class="row participant-info"  *ngFor = " let participant of participantInfo ">
                                                 <div class="col-sm-2">
-                                                    <img src="{{participant.member_details.image}}" class="rounded-circle" width="50" height="50">
+                                                    <img src="{{participant.profile_image}}" class="rounded-circle" width="50" height="50">
                                                 </div> 
                                                 <div class="col-sm-7">
+                                                    <span>{{participant.name}}</span> 
+                                                </div>
+                                                <!-- <div class="col-sm-7">
                                                     <ng-container
                                                         *ngIf="isAdminForThisGroup && participant.member_details.customer_id != mainCustomerId; then editMemberInfo; else memberInfo">
                                                     </ng-container>
@@ -132,12 +138,12 @@
                                                     <ng-template #memberInfo>
                                                         {{participant.member_details.name}}
                                                     </ng-template>
-                                                </div>
-                                                <div class="col-sm-3">
+                                                </div> -->
+                                                <!-- <div class="col-sm-3">
                                                     <div *ngIf="participant.is_admin">
                                                         <button class="btn btn-default button-admin" disabled>Admin</button>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                         <div class="modal-footer">

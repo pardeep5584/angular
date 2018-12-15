@@ -24,7 +24,6 @@ export class DataServiceService {
     let messages = this.messageDetails.filter((message)=>{
         return message.chat_id == this.chatId;
     });
-    console.log(messages); 
     this.chatMessages.next(messages); 
     this.chatWithCustomerInfo.next(this.getChatWithCustomer(this.chatWithCustomerId));      
     this.isChatWithTypeInfo.next(true); 
@@ -45,7 +44,7 @@ export class DataServiceService {
     
   }
 
-  customerTableData = [
+customerTableData = [
     {
         "last_seen": [
             {
@@ -194,7 +193,7 @@ chatTableData = [
     }
 ];
 
-  groupData = [
+groupData = [
     {
         "admin_id": [
             "5c03c269ca156059ddf59154"
@@ -225,7 +224,7 @@ chatTableData = [
     }
 ];
 
-  messageDetails = [
+messageDetails = [
     {
         "_id": "5c05562e3797d1446983e15f",
         "chat_id": "5c03c755ca156059ddf5932b",
@@ -277,69 +276,37 @@ chatTableData = [
     }
 ];
     
-  // getPersonalInfo(customerId) {
-  //   // calll api for get customer personal info from database
-  //   console.log("JAI SHREE RAM.");
-  //   // set customer use for chat view component
-  //   this.loginedCustomerId = customerId;
-  //   var personalInfo = {};
-  //   for( var customers in this.customerTableData) {
-  //     if (this.customerTableData[customers].id == customerId) { 
-  //       personalInfo = {
-  //         "id" : this.customerTableData[customers].id,
-  //         "name" : this.customerTableData[customers].name,
-  //         "last_seen" : this.customerTableData[customers].last_seen,
-  //         "profile_image" : this.customerTableData[customers].profile_image,
-  //         "chat_list" : this.getChatList(this.customerTableData[customers].chat_ids, customerId)
-  //       };
-  //     }
-  //   }
-  //   return personalInfo;
-  // }
-    
-  getChatList(chatIds, customerId) {
-    console.log(chatIds + "---" + customerId);
-    var chatsList = [];
+getChatList(chatIds, customerId) {
+    var chatsList = []; 
     var chatWithData;
     var indexOfRemoveElement;
     var memberArray;
 
-    // work from here
     for(var chatId in chatIds) {
       for( var chatData in this.chatTableData) {
-        // match customer chatId in chat table data.
         if ( this.chatTableData[chatData]._id == chatIds[chatId]) {
-
-          // console.log("jai shani dev bhagwan ji");
-          // console.log("jai shiv shankar bhagwan ji");
-          // console.log("JAI SHREE RAM JI");
-          // console.log("jai hanuman ji");
-
           if ( this.chatTableData[chatData].is_group ) {
             chatWithData = this.getChatWithGroup(this.chatTableData[chatData].group_id);
           } else {
-            //get array diff this.chatTableData[chatData].members and customerId => getname(diff)
             memberArray = this.chatTableData[chatData].members;
             indexOfRemoveElement = (memberArray .indexOf(customerId));
             memberArray.splice(indexOfRemoveElement,1);
             chatWithData = this.getChatWithCustomer(memberArray[0]);
           }
-          // push data in array;
           chatsList.push({
             "chat_id" : this.chatTableData[chatData]._id,
             "is_group": this.chatTableData[chatData].is_group,
             "chat_with_data" : chatWithData,
             "last_message" : this.getLastMessage(this.chatTableData[chatData].last_message_id)
           });
-          // break the for loop if we got chat datas.
           break;
         }
       }   
     }
     return (chatsList); 
-  }
+}
 
-  getChatWithCustomer(customerId) {
+getChatWithCustomer(customerId) {
     var chatWith;
     for( var customers in this.customerTableData) {
       if (this.customerTableData[customers]._id == customerId) {
@@ -351,21 +318,10 @@ chatTableData = [
           break;  
       } 
     } 
-    // var chatWithb;
-    // this.getCustomerById('5c03c24fca156059ddf59140').subscribe(res => {
-    //   var customerData = res.json();
-    //   console.log(customerData[0]._id);
-    //   chatWithb = {
-    //     "customer_id" : customerData[0]._id,
-    //     "name" : customerData[0].name,
-    //     "image" : customerData[0].profile_image
-    //   }
-    // });
-    // return chatWithb;
     return chatWith;   
-  }
+}
   
-  getChatWithGroup(groupId) {
+getChatWithGroup(groupId) {
     var chatWith;
     for( var group in this.groupData) {
       if (this.groupData[group]._id == groupId) {
@@ -378,11 +334,11 @@ chatTableData = [
       break;    
       }
     } 
-    return chatWith;   
-  }
+    return chatWith;
 
-  getLastMessage(messageId) {
-    // return messageId;
+}
+
+getLastMessage(messageId) {
     var lastMessageData = {};
     for( var messge in this.messageDetails) {
       if (this.messageDetails[messge]._id == messageId) {
@@ -393,10 +349,11 @@ chatTableData = [
         break;
       }  
     }
-    return lastMessageData;  
-  }
+    return lastMessageData; 
+     
+}
   
-  getGroupParticipantInfo( customerId, groupId) {
+getGroupParticipantInfo( customerId, groupId) {
     var customerIdSet;
     var customerParticipantList = [];
     var groupMemberInfo;
@@ -406,18 +363,21 @@ chatTableData = [
         break; 
       }
     }
+    
     for( var custId in customerIdSet) {
+        // groupMemberInfo = {
+        //   "member_details" : this.getChatWithCustomer(customerIdSet[custId]),
+        //   "is_admin"       : this.isMemberAdmin(groupId, customerIdSet[custId])
+        //   }; 
         groupMemberInfo = {
-          "member_details" : this.getChatWithCustomer(customerIdSet[custId]),
-          "is_admin"       : this.isMemberAdmin(groupId, customerIdSet[custId])
-          }; 
+            "member_details" : this.getChatWithCustomer(customerIdSet[custId])
+        }; 
         customerParticipantList.push(groupMemberInfo);
     }
-    
     return customerParticipantList;
-  }
+}
 
-  isMemberAdmin(groupId, memberId) {
+isMemberAdmin(groupId, memberId) {
     var adminIds;
     for( var group in this.groupData) {
       if (this.groupData[group]._id == groupId) {
@@ -428,39 +388,64 @@ chatTableData = [
         break;
       }
     }
-    return false;
+    return false; 
   }
 
-  // customers
-  getCustomers() {
-    console.log("JAI SHREE RAM JI");
-    return this.http.get('http://localhost:8080/customers/');
-  }
+/////////////////////////////////////////////////////////
+public  getttingGropPopInfo : BehaviorSubject<any> = new BehaviorSubject([]);
+getGroupParticipant(groupId) {
+    let lastMessageData = {};
+    let promise = new Promise((resolve, reject) => {
+        this.http.get(`http://localhost:8080/getGroupParticipantInfo/${groupId}`)
+          .toPromise()
+          .then(
+            res => {
+                var d = res.json(); 
+                // console.log(this.groupCusterCollectionInfo);
+                resolve();
+                this.getttingGropPopInfo.next(d); 
+            }
+          );
+    });
+    return promise;
+}
+/////////////////////////////////////////////////////////
+  // customers api calls
+getCustomers() {
+    return this.http.get(`http://localhost:8080/customers/`);
+}
 
-  createCustomer(data) {
-    console.log("JAI SHREE RAM JI");
+createCustomer(data) {
     return this.http.post(`http://localhost:8080/customer/`, data);
-  }
+}
 
-  getCustomerById(id) {
-    console.log("JAI SHREE RAM");
+getCustomerById(id) {
     return this.http.get(`http://localhost:8080/customer/${id}`);
-  }
+}
 
-  updateCustomer(id, data) {
-    console.log("JAI SHREE RAM");
+updateCustomer(id, data) {
     return this.http.put(`http://localhost:8080/customer/${id}`, data);
-  }
+}
 
-  deleteCustomer(id) { 
-    console.log("JAI SHREE RAM");
-    return this.http.delete(`http://localhost:8080/customercd/${id}`);  
-  }
+deleteCustomer(id) { 
+    return this.http.delete(`http://localhost:8080/customercd/${id}`);   
+}
 
-  // chats
-  getChatsByIds(ids) {
+// groups api call
+getGroupsById(id) {
+    return this.http.get(`http://localhost:8080/group/${id}`);
+}
+
+// chats
+getChatsByIds(ids) {
     console.log("JAI SHREE RAM");
-    return this.http.get(`http://localhost:8080/chats/${ids}`);
-  }
+    return this.http.get(`http://localhost:8080/chat/${ids}`);
+}
+
+// messages
+getMessageByIds(ids) {
+    console.log("JAI SHREE RAM");
+    return this.http.get(`http://localhost:8080/message/${ids}`);
+}
 
 }

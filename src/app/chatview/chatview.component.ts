@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataServiceService } from '../data-service.service';
+import {Http, Headers} from '@angular/http';
 
 @Component({
   selector: 'app-chatview',
@@ -13,13 +14,12 @@ export class ChatviewComponent implements OnInit {
   messages;
   chatWithMemberDetails;
   chatWithGroupDetails;
+
   // customer id
   mainCustomerId;
-  constructor ( private dataser : DataServiceService ) {
-    // this.mainCustomerId = 1;
+  constructor ( private dataser : DataServiceService, public http : Http ) {
     this.dataser.loginedCustomerId.subscribe(data => { 
       this.mainCustomerId = data;
-      // console.log(this.mainCustomerId);
     });
 
     // for show welcome message
@@ -47,22 +47,26 @@ export class ChatviewComponent implements OnInit {
       this.chatWithGroupDetails = data;
       // console.log(this.chatWithGroupDetails);
     }); 
+    
+    this.dataser.getttingGropPopInfo.subscribe(data => {
+      this.participantInfo = data;
+    }); 
 
   }
 
   ngOnInit() {
-    // console.log("------------------------------------");
-    // this.dataser.getAllGroups().subscribe((res)=>console.log(res.json()))
   }
+
   participantInfo;
   isAdminForThisGroup;
-  getGroupParticipantInfo( customerId, groupId) {
-    this.participantInfo = this.dataser.getGroupParticipantInfo(customerId, groupId);
-    // console.log(this.participantInfo);
-    this.isAdminForThisGroup = this.dataser.isMemberAdmin(customerId, groupId);
-    // console.log(this.isAdminForThisGroup)
+  // getGroupParticipantInfo( customerId, groupId) {
+  //   this.participantInfo = this.dataser.getGroupParticipantInfo(customerId, groupId);
+  //   // this.isAdminForThisGroup = this.dataser.isMemberAdmin(customerId, groupId);
+  // }
+
+/////////////////////////////// API CALLING WORK START FROM HERE/////////////////////
+  getTest(customerId, groupId) {
+    this.dataser.getGroupParticipant(groupId);
   }
-  
-  
 
 }
