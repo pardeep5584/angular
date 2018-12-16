@@ -25,8 +25,10 @@ export class DataServiceService {
     //     return message.chat_id == this.chatId;
     // });
     // this.chatMessages.next(messages); 
+    // this.chatWithCustomerInfo.next(this.getChatWithCustomer(this.chatWithCustomerId)); 
     this.getMessageForChat(this.chatId);
-    this.chatWithCustomerInfo.next(this.getChatWithCustomer(this.chatWithCustomerId));      
+    this.getChatWithCustomerInfo(this.chatWithCustomerId);   
+
     this.isChatWithTypeInfo.next(true); 
     this.isShowWelcomeMessage.next(false);
   }
@@ -35,9 +37,11 @@ export class DataServiceService {
     // let messages = this.messageDetails.filter((message)=>{
     //     return message.chat_id == this.chatId;
     // });
-    this.getMessageForChat(this.chatId);
     // this.chatMessages.next(messages); 
-    this.chatWithGroupInfo.next(this.getChatWithGroup(this.chatWithGroupId));      
+    // this.chatWithGroupInfo.next(this.getChatWithGroup(this.chatWithGroupId)); 
+    this.getMessageForChat(this.chatId);
+    this.getChatWithGroupInfo(this.chatWithGroupId);       
+
     this.isChatWithTypeInfo.next(false); 
     this.isShowWelcomeMessage.next(false);
   }
@@ -308,7 +312,7 @@ getChatList(chatIds, customerId) {
     return (chatsList); 
 }
 
-getChatWithCustomer(customerId) {
+getChatWithCustomer(customerId) { 
     var chatWith;
     for( var customers in this.customerTableData) {
       if (this.customerTableData[customers]._id == customerId) {
@@ -320,6 +324,7 @@ getChatWithCustomer(customerId) {
           break;  
       } 
     } 
+    // console.log(chatWith); 
     return chatWith;   
 }
   
@@ -403,7 +408,6 @@ getGroupParticipant(groupId) {
           .then(
             res => {
                 var d = res.json(); 
-                // console.log(this.groupCusterCollectionInfo);
                 resolve();
                 this.getttingGropPopInfo.next(d); 
             }
@@ -421,38 +425,45 @@ getMessageForChat(chatIs) {
                 var messages = res.json(); 
                 this.chatMessages.next(messages);
                 resolve(); 
-                // this.getttingGropPopInfo.next(d); 
             }
           );
     });
     return promise;
 }
 
+getChatWithGroupInfo(groupId) {
+    let promise = new Promise((resolve, reject) => {
+        this.http.get(`http://localhost:8080/group/${groupId}`)
+          .toPromise()
+          .then(
+            res => {
+                var infoGroup = res.json(); 
+                this.chatWithGroupInfo.next(infoGroup);
+                resolve(); 
+            }
+          );
+    });
+    return promise;
+}
+
+getChatWithCustomerInfo(customerId) {
+    let promise = new Promise((resolve, reject) => {
+        this.http.get(`http://localhost:8080/customerinfo/${customerId}`)
+          .toPromise()
+          .then(
+            res => {
+                var infoCustomer = res.json(); 
+                this.chatWithCustomerInfo.next(infoCustomer);
+                resolve(); 
+            }
+          );
+    });
+    return promise;
+}
 /////////////////////////////////////////////////////////
   // customers api calls
-getCustomers() {
-    return this.http.get(`http://localhost:8080/customers/`);
-}
-
-createCustomer(data) {
-    return this.http.post(`http://localhost:8080/customer/`, data);
-}
-
-getCustomerById(id) {
+getCustomerById(id) { 
     return this.http.get(`http://localhost:8080/customer/${id}`);
-}
-
-updateCustomer(id, data) {
-    return this.http.put(`http://localhost:8080/customer/${id}`, data);
-}
-
-deleteCustomer(id) { 
-    return this.http.delete(`http://localhost:8080/customercd/${id}`);   
-}
-
-// groups api call
-getGroupsById(id) {
-    return this.http.get(`http://localhost:8080/group/${id}`);
 }
 
 // chats
