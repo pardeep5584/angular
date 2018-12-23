@@ -15,16 +15,9 @@ export class ChatsComponent implements OnInit {
   newData = {};
   constructor(private dataser: DataServiceService, public http : Http) {
     this.dataser.loginedCustomerId.next("5c03c24fca156059ddf59140");
-    this.dataser.getCustomerById('5c03c24fca156059ddf59140').subscribe(res => {
-      var customerData = res.json();
-      this.personlData = { 
-        "id": customerData[0]._id,
-        "name": customerData[0].name,
-        "last_seen": customerData[0].last_seen,
-        "profile_image": customerData[0].profile_image,
-        "chat_list": this.dataser.getChatList(customerData[0].chat_ids, "5c03c24fca156059ddf59140")
-      };
-    });
+    this.dataser.getCustomerPersonalDetails('5c03c24fca156059ddf59140').subscribe(res => {
+      this.personlData =  res.json(); 
+    });  
   }
 
   dataMessage = [] ;
